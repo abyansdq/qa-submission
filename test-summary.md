@@ -35,7 +35,7 @@ Sebagian besar fitur utama seperti login, logout, sorting produk, keranjang bela
 
 ### API Testing (Restful Booker)
 
-Total test case yang dijalankan: **9**
+Total test case yang dijalankan: **11**
 
 | Status  | Jumlah |
 | ------- | ------ |
@@ -66,11 +66,11 @@ Skenario negatif yang diuji:
 
 ### Automation Testing (Playwright)
 
-Total automation test yang dibuat: **13**
+Total automation test yang dibuat: **11** dengan environment chrome dan msedge total **22**
 
 | Status  | Jumlah |
 | ------- | ------ |
-| Pass    | 13     |
+| Pass    | 22     |
 | Fail    | 0      |
 | Blocked | 0      |
 
@@ -81,11 +81,14 @@ Automation dibuat menggunakan Playwright dengan pendekatan Page Object Model (PO
 ## Bug yang Ditemukan
 
 Selama proses eksplorasi dan pengujian, ditemukan beberapa bug dengan tingkat severity yang berbeda.
+- standar_user : 2 bug critical
+- problem_user : 7 bug critical, 2 bug high
+- performance_glitch_user : 9 bug medium
 
 ### Critical
 
 * Beberapa produk pada akun problem_user tidak dapat ditambahkan ke keranjang.
-* Gambar produk yang ditampilkan tidak sesuai dengan produk yang dipilih.
+* Gambar produk yang ditampilkan tidak sesuai dengan produk yang dipilih pada akun problem_user.
 * Data keranjang tidak konsisten pada akun tertentu.
 * Field Last Name tidak dapat diisi pada proses checkout.
 * User dapat melanjutkan proses checkout meskipun keranjang kosong.
@@ -93,18 +96,12 @@ Selama proses eksplorasi dan pengujian, ditemukan beberapa bug dengan tingkat se
 ### High
 
 * Fitur sorting tidak berjalan dengan baik pada akun problem_user.
-* Menu About mengarah ke halaman error.
+* Menu About mengarah ke halaman error pada akun problem_user.
 * Informasi checkout yang ditampilkan tidak konsisten antar halaman.
 
 ### Medium
 
-* Tidak tersedia fitur Remove All pada halaman keranjang.
-* Tidak tersedia fitur perubahan quantity produk.
-* Informasi jumlah stok produk tidak ditampilkan.
-
-### Low
-
-* Ditemukan beberapa keterlambatan respon saat menggunakan akun performance_glitch_user.
+* Ditemukan beberapa fitur terjadi keterlambatan respon saat menggunakan akun performance_glitch_user.
 
 ---
 
@@ -112,24 +109,18 @@ Selama proses eksplorasi dan pengujian, ditemukan beberapa bug dengan tingkat se
 
 Karena waktu pengerjaan terbatas dan aplikasi yang digunakan merupakan aplikasi demo, ada beberapa area yang belum sempat diuji lebih lanjut, di antaranya:
 
-* Cross browser testing secara menyeluruh
-* Performance testing menggunakan tools khusus
-* Security testing
-* Accessibility testing
-* Concurrent user testing
-* Integrasi dengan sistem pembayaran dan pengiriman
-
-Beberapa area tersebut juga tidak tersedia secara penuh pada aplikasi SauceDemo sehingga tidak dapat dilakukan pengujian lebih lanjut.
-
+- Pengujian pada browser Firefox dan Safari/WebKit
+- Pengujian pada perangkat mobile
+- Pengujian accessibility (aksesibilitas)
+- Pengujian performa pada koneksi internet yang berbeda
+- Exploratory testing yang lebih mendalam pada seluruh akun demo SauceDemo
 ---
 
 ## Rekomendasi
 
 ### SauceDemo
 
-Menurut saya aplikasi ini belum layak untuk dirilis ke production apabila bug yang ditemukan masih ada, terutama bug dengan severity Critical yang berhubungan langsung dengan proses pembelian produk.
-
-Beberapa bug dapat mempengaruhi pengalaman pengguna dan berpotensi mengganggu proses transaksi, sehingga sebaiknya diperbaiki terlebih dahulu sebelum dilakukan release.
+Berdasarkan hasil pengujian, ditemukan beberapa defect dengan severity Critical dan High yang dapat mempengaruhi proses pembelian produk. Apabila defect tersebut ditemukan pada aplikasi production, maka disarankan untuk dilakukan perbaikan sebelum proses release.
 
 ### Restful Booker API
 
@@ -141,13 +132,12 @@ Berdasarkan hasil pengujian yang dilakukan, endpoint yang tersedia berjalan sesu
 
 Jika diberikan waktu tambahan, saya akan melakukan beberapa hal berikut:
 
-* Menambah coverage automation test untuk seluruh test case utama.
-* Menambahkan API automation agar proses testing dapat dijalankan secara otomatis.
-* Menjalankan cross browser testing pada Chrome, Firefox, dan WebKit.
-* Menambahkan reporting automation menggunakan Allure Report.
-* Melakukan performance testing menggunakan JMeter atau k6.
-* Melakukan pengujian security dasar pada API.
-* Menambahkan automation ke dalam pipeline CI/CD agar dapat dijalankan otomatis setiap ada perubahan kode.
+- Menambah coverage automation test untuk seluruh skenario utama.
+- Menambahkan lebih banyak negative test case.
+- Melakukan pengujian pada browser tambahan seperti Firefox.
+- Menambahkan validasi yang lebih detail pada automation test.
+- Melakukan exploratory testing lebih mendalam pada fitur checkout dan keranjang.
+- Menambahkan dokumentasi hasil pengujian yang lebih lengkap.
 
 ---
 
