@@ -1,4 +1,4 @@
-# SauceDemo Automation Test
+# Submission Automation Test
 
 ## Requirements
 
